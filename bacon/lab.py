@@ -14,7 +14,7 @@ def get_key_from_val(dict, val):
         if v == val:
             return k
     return None
-
+ 
 def transform_data(raw_data):
     return raw_data
 
@@ -24,7 +24,7 @@ def acted_together(transformed_data, actor_id_1, actor_id_2):
 
 
 def actors_with_bacon_number(transformed_data, n):
-    raise NotImplementedError("Implement me!")
+    raise NotImplementedError("Implement me!") 
 
 
 def bacon_path(transformed_data, actor_id):
