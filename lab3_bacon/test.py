@@ -44,6 +44,12 @@ def test_acted_together_03():
     actor2 = 4724
     assert lab.acted_together(db_small, actor1, actor2) is True
 
+def test_small_acted_together_04():
+    # Made by me!
+    # Simple test, two actors who acted together (in reverse order)
+    actor1 = 46866
+    actor2 = 572599
+    assert lab.acted_together(db_small, actor1, actor2) is True
 
 def _run_pickled_together_test(n):
     filename = os.path.join(
@@ -122,6 +128,25 @@ def test_bacon_number_04():
     assert len(lab.actors_with_bacon_number(lab.transform_data(make_bacon_tree(N, k)), 10**20)) == 0
     assert len(lab.actors_with_bacon_number(lab.transform_data(make_bacon_tree(N, k)), 10**20)) == 0
 
+def test_tiny_bacon_number_0():
+    # tiny
+    expected = {4724}
+    assert expected == lab.actors_with_bacon_number(db_tiny, 0)
+
+def test_tiny_bacon_number_1():
+    # tiny
+    expected = {2876, 1532}
+    assert expected == lab.actors_with_bacon_number(db_tiny, 1)
+
+def test_tiny_bacon_number_2():
+    # tiny
+    expected = {1640}
+    assert expected == lab.actors_with_bacon_number(db_tiny, 2)
+
+def test_tiny_bacon_number_3():
+    # tiny
+    expected = set()
+    assert expected == lab.actors_with_bacon_number(db_tiny, 3)
 
 def test_bacon_path_01():
     # Bacon path, small database, path does not exist
@@ -184,6 +209,12 @@ def test_bacon_path_06():
     result = lab.bacon_path(db_large, actor_id)
     assert result == expected
 
+def test_tiny_bacon_path():
+    # tiny!
+    actor_id = 1640
+    expected = [4724, 2876, 1640]
+    result = lab.bacon_path(db_tiny, actor_id)
+    assert result == expected
 
 def test_actor_to_actor_path_01():
     # Actor path, large database, length of 7 (8 actors, 7 movies)
@@ -266,6 +297,13 @@ def test_actor_to_actor_path_08():
     p = lab.actor_to_actor_path(lab.transform_data(data), 4724, y)
     assert p is None
 
+def test_tiny_actor_to_actor_path():
+    # tiny!
+    actor_id_1 = 4724
+    actor_id_2 = 2876
+    expected = [4724, 2876]
+    result = lab.actor_to_actor_path(db_tiny, actor_id_1, actor_id_2)
+    assert result == expected
 
 def _run_pickled_a2a_path_test(n):
     filename = os.path.join(
